@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Pytorch安装之Anaconda安装 | Jona's Blog</title><meta name="author" content="赖兴兵"><meta name="copyright" content="赖兴兵"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#FFFBFF"><meta name="description" content="Anaconda 就是可以便捷获取包且对包能够进行管理，同时对环境可以统一管理的发行版本。Anaconda包含了conda、Python在内的超过180个科学包及其依赖项。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch安装之Anaconda安装">
+<meta property="og:url" content="http://huanyuan.mobi/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8BAnaconda%E5%AE%89%E8%A3%85.html">
+<meta property="og:site_name" content="Jona&#39;s Blog">
+<meta property="og:description" content="Anaconda 就是可以便捷获取包且对包能够进行管理，同时对环境可以统一管理的发行版本。Anaconda包含了conda、Python在内的超过180个科学包及其依赖项。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huanyuan.mobi/imgs/c5.jpg">
+<meta property="article:published_time" content="2022-01-12T03:30:00.000Z">
+<meta property="article:modified_time" content="2023-03-11T07:27:21.616Z">
+<meta property="article:author" content="赖兴兵">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Anaconda">
+<meta property="article:tag" content="conda">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://huanyuan.mobi/imgs/c5.jpg"><link rel="shortcut icon" href="/imgs/avatar.jpg"><link rel="canonical" href="http://huanyuan.mobi/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8BAnaconda%E5%AE%89%E8%A3%85.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-i31VjpiWuu"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?[object Object]";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '[object Object]');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytorch安装之Anaconda安装',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-11 15:27:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1C1B1E')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FFFBFF')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/imgs/avatar.jpg" onerror="onerror=null;src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/imgs/c5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jona's Blog"><span class="site-name">Jona's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Pytorch安装之Anaconda安装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-12T03:30:00.000Z" title="发表于 2022-01-12 11:30:00">2022-01-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-11T07:27:21.616Z" title="更新于 2023-03-11 15:27:21">2023-03-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/Python/">Python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pytorch安装之Anaconda安装"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、什么是Anaconda？"><a href="#一、什么是Anaconda？" class="headerlink" title="一、什么是Anaconda？"></a>一、什么是Anaconda？</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Anaconda（<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://www.anaconda.com/download/%23macos">官方网站</a>）就是可以便捷获取包且对包能够进行管理，同时对环境可以统一管理的发行版本。Anaconda包含了conda、Python在内的超过180个科学包及其依赖项。</p>
+<h2 id="2-特点"><a href="#2-特点" class="headerlink" title="2. 特点"></a>2. 特点</h2><p>Anaconda具有如下特点：</p>
+<ul>
+<li>开源</li>
+<li>安装过程简单</li>
+<li>高性能使用Python和R语言</li>
+<li>免费的社区支持</li>
+</ul>
+<p>其特点的实现主要基于Anaconda拥有的：</p>
+<ul>
+<li>conda包</li>
+<li>环境管理器</li>
+<li>1,000+开源库</li>
+</ul>
+<p>如果日常工作或学习并不必要使用1,000多个库，那么可以考虑安装Miniconda（<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://conda.io/miniconda.html">图形界面下载及命令行安装请戳</a>），这里不过多介绍Miniconda的安装及使用。</p>
+<h1 id="二、Anaconda的安装步骤"><a href="#二、Anaconda的安装步骤" class="headerlink" title="二、Anaconda的安装步骤"></a>二、Anaconda的安装步骤</h1><h2 id="1-Windows系统安装Anaconda"><a href="#1-Windows系统安装Anaconda" class="headerlink" title="1. Windows系统安装Anaconda"></a>1. Windows系统安装Anaconda</h2><ol>
+<li><p>前往<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://docs.anaconda.com/anaconda/install/windows">官方下载页面</a>下载。有两个版本可供选择：Python 3.6 和 Python 2.7，选择版之后根据自己操作系统的情况点击“64-Bit Graphical Installer”或“32-Bit Graphical Installer”进行下载。</p>
+</li>
+<li><p>完成下载之后，双击下载文件，启动安装程序。</p>
+</li>
+</ol>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>如果在安装过程中遇到任何问题，那么暂时地关闭杀毒软件，并在安装程序完成之后再打开。</li>
+<li>如果在安装时选择了“为所有用户安装”，则卸载Anaconda然后重新安装，只为“我这个用户”安装。</li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>选择“Next”。</li>
+<li>阅读许可证协议条款，然后勾选“I Agree”并进行下一步。</li>
+<li>除非是以管理员身份为所有用户安装，否则仅勾选“Just Me”并点击“Next”。</li>
+<li>在“Choose Install Location”界面中选择安装Anaconda的目标路径，然后点击“Next”。</li>
+</ol>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>目标路径中<strong>不能</strong>含有<strong>空格</strong>，同时不能是“unicode”编码。</li>
+<li>除非被要求以管理员权限安装，否则不要以管理员身份安装。</li>
+</ol>
+</blockquote>
+<p><img src="/imgs/202201/20220112142709.png"></p>
+<ol start="7">
+<li>在“Advanced Installation Options”中 <strong>不要</strong> 勾选 “Add Anaconda to my PATH environment variable”（添加Anaconda至我的环境变量）。因为如果勾选，则将会影响其他程序的使用。如果使用Anaconda，则通过打开Anaconda Navigator或者在开始菜单中的“Anaconda Prompt”（类似macOS中的“终端”）中进行使用。</li>
+</ol>
+<blockquote>
+<p>除非你打算使用多个版本的Anaconda或者多个版本的Python，否则便勾选“Register Anaconda as my default Python 3.6”。</p>
+</blockquote>
+<p>然后点击“Install”开始安装。如果想要查看安装细节，则可以点击“Show Details”。<br><img src="/imgs/202201/20220112142742.png"></p>
+<ol start="8">
+<li>点击“Next”。</li>
+<li>进入“Thanks for installing Anaconda!”界面则意味着安装成功，点击“Finish”完成安装。</li>
+</ol>
+<blockquote>
+<p>注意：如果你不想了解“Anaconda云”和“Anaconda支持”，则可以<strong>不勾选</strong>“Learn more about Anaconda Cloud”和“Learn more about Anaconda Support”。  </p>
+</blockquote>
+<p><img src="/imgs/202201/20220112142755.png"></p>
+<ol start="10">
+<li>验证安装结果。可选以下任意方法：</li>
+</ol>
+<ul>
+<li>“开始 → Anaconda3（64-bit）→ Anaconda Navigator”，若可以成功启动Anaconda Navigator则说明安装成功。</li>
+<li>“开始 → Anaconda3（64-bit）→ 右键点击Anaconda Prompt → 以管理员身份运行”，在Anaconda Prompt中输入<code>conda list</code>，可以查看已经安装的包名和版本号。若结果可以正常显示，则说明安装成功。</li>
+</ul>
+<h1 id="三、Anaconda使用"><a href="#三、Anaconda使用" class="headerlink" title="三、Anaconda使用"></a>三、Anaconda使用</h1><p>请打开“Anaconda Prompt”。</p>
+<h2 id="1-验证conda已被安装"><a href="#1-验证conda已被安装" class="headerlink" title="1. 验证conda已被安装"></a>1. 验证conda已被安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure>
+<p>终端上将会以<code>conda 版本号</code>的形式显示当前安装conda的版本号。如：<code>conda 4.10.3</code><br><img src="/imgs/202201/20220112143010.png"></p>
+<h2 id="2-更新conda至最新版本"><a href="#2-更新conda至最新版本" class="headerlink" title="2. 更新conda至最新版本"></a>2. 更新conda至最新版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update conda</span><br></pre></td></tr></table></figure>
+<p>执行命令后，conda将会对版本进行比较并列出可以升级的版本。同时，也会告知用户其他相关包也会升级到相应版本。</p>
+<p>当较新的版本可以用于升级时，终端会显示<code>Proceed ([y]/n)?</code>，此时输入<code>y</code>即可进行升级。<br><img src="/imgs/202201/20220112143705.png"></p>
+<h2 id="3-卸载conda"><a href="#3-卸载conda" class="headerlink" title="3. 卸载conda"></a>3. 卸载conda</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">控制面板 → 添加或删除程序 → 选择“Python X<span class="selector-class">.X</span> (Anaconda)” → 点击“删除程序”</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>Python X.X：即Python的版本，如：Python 3.6。</li>
+<li>Windows 10的删除有所不同。</li>
+</ol>
+</blockquote>
+<h1 id="四、管理环境"><a href="#四、管理环境" class="headerlink" title="四、管理环境"></a>四、管理环境</h1><p>请打开“Anaconda Prompt”。</p>
+<h2 id="1-创建新环境"><a href="#1-创建新环境" class="headerlink" title="1. 创建新环境"></a>1. 创建新环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name &lt;env_name&gt; &lt;package_names&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：    </p>
+<ul>
+<li><code>&lt;env_name&gt;</code>即创建的环境名。建议以英文命名，且不加空格，名称两边不加尖括号“&lt;&gt;”。</li>
+<li><code>&lt;package_names&gt;</code>即安装在环境中的包名。名称两边不加尖括号“&lt;&gt;”。</li>
+<li><code>--name</code>同样可以替换为<code>-n</code>。</li>
+</ul>
+<ol>
+<li>如果要安装指定的版本号，则只需要在包名后面以<code>=</code>和版本号的形式执行。如：<code>conda create --name python2 python=2.7</code>，即创建一个名为“python2”的环境，环境中安装版本为2.7的python。</li>
+<li>如果要在新创建的环境中创建多个包，则直接在<code>&lt;package_names&gt;</code>后以<strong>空格</strong>隔开，添加多个包名即可。如：<code>conda create -n python3 python=3.5 numpy pandas</code>，即创建一个名为“python3”的环境，环境中安装版本为3.5的python，同时也安装了numpy和pandas。</li>
+</ol>
+<blockquote>
+<p>提示：默认情况下，新创建的环境将会被保存在<code>/Users/&lt;user_name&gt;/anaconda3/env</code>目录下，其中，<code>&lt;user_name&gt;</code>为当前用户的用户名。</p>
+</blockquote>
+<p>例如：<strong>创建一个python3环境  版本是3.10</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name python3 python=3.10</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-切换环境"><a href="#2-切换环境" class="headerlink" title="2. 切换环境"></a>2. 切换环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate &lt;env_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-退出环境"><a href="#3-退出环境" class="headerlink" title="3. 退出环境"></a>3. 退出环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<p>具体看图：<br>    <img src="/imgs/202201/20220112145008.png"></p>
+<h2 id="4-显示已创建环境"><a href="#4-显示已创建环境" class="headerlink" title="4. 显示已创建环境"></a>4. 显示已创建环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p><img src="/imgs/202201/20220112145232.png"></p>
+<h2 id="5-删除环境"><a href="#5-删除环境" class="headerlink" title="5. 删除环境"></a>5. 删除环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name &lt;env_name&gt; --all</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<code>&lt;env_name&gt;</code>为被删除环境的名称。环境名两边不加尖括号“&lt;&gt;”。</p>
+</blockquote>
+<h1 id="五、管理包"><a href="#五、管理包" class="headerlink" title="五、管理包"></a>五、管理包</h1><h2 id="1-查找可供安装的包版本"><a href="#1-查找可供安装的包版本" class="headerlink" title="1. 查找可供安装的包版本"></a>1. 查找可供安装的包版本</h2><h3 id="1-1-精确查找"><a href="#1-1-精确查找" class="headerlink" title="1.1. 精确查找"></a>1.1. 精确查找</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda search --full-name &lt;package_full_name&gt;</span><br></pre></td></tr></table></figure>
+<p> 注意：</p>
+<ol>
+<li><code>--full-name</code>为精确查找的参数。</li>
+<li><code>&lt;package_full_name&gt;</code>是被查找包的<strong>全名</strong>。包名两边不加尖括号“&lt;&gt;”。</li>
+</ol>
+<blockquote>
+<p>例如：<code>conda search --full-name python</code>即查找全名为“python”的包有哪些版本可供安装。</p>
+</blockquote>
+<h3 id="1-2-模糊查找"><a href="#1-2-模糊查找" class="headerlink" title="1.2. 模糊查找"></a>1.2. 模糊查找</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda search &lt;text&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>&lt;text&gt;</code>是查找含有<strong>此字段</strong>的包名。此字段两边不加尖括号“&lt;&gt;”。</p>
+<blockquote>
+<p>例如：conda search py即查找含有“py”字段的包，有哪些版本可供安装。</p>
+</blockquote>
+<h2 id="2-获取当前环境中已安装的包信息"><a href="#2-获取当前环境中已安装的包信息" class="headerlink" title="2. 获取当前环境中已安装的包信息"></a>2. 获取当前环境中已安装的包信息</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+<p>执行上述命令后将在终端显示当前环境已安装包的包名及其版本号。</p>
+<h2 id="3-安装包"><a href="#3-安装包" class="headerlink" title="3. 安装包"></a>3. 安装包</h2><h3 id="3-1-在指定环境中安装包"><a href="#3-1-在指定环境中安装包" class="headerlink" title="3.1. 在指定环境中安装包"></a>3.1. 在指定环境中安装包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install --name &lt;env_name&gt; &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><code>&lt;env_name&gt;</code>即将包安装的指定环境名。环境名两边不加尖括号“&lt;&gt;”。</li>
+<li><code>&lt;package_name&gt;</code>即要安装的包名。包名两边不加尖括号“&lt;&gt;”。</li>
+</ol>
+<blockquote>
+<p>例如：<code>conda install --name python2 pandas</code>即在名为“python2”的环境中安装pandas包。</p>
+</blockquote>
+<h3 id="3-2-在当前环境中安装包"><a href="#3-2-在当前环境中安装包" class="headerlink" title="3.2. 在当前环境中安装包"></a>3.2. 在当前环境中安装包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><code>&lt;package_name&gt;</code>即要安装的包名。包名两边不加尖括号“&lt;&gt;”。</li>
+<li>执行命令后在当前环境中安装包。<blockquote>
+<p>例如：<code>conda install pandas</code>即在当前环境中安装pandas包。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="3-3-使用pip安装包"><a href="#3-3-使用pip安装包" class="headerlink" title="3.3. 使用pip安装包"></a>3.3. 使用pip安装包</h3><h4 id="3-3-1-使用场景"><a href="#3-3-1-使用场景" class="headerlink" title="3.3.1. 使用场景"></a>3.3.1. 使用场景</h4><p>当使用<code>conda install</code>无法进行安装时，可以使用pip进行安装。例如：see包。</p>
+<h4 id="3-3-2-命令"><a href="#3-3-2-命令" class="headerlink" title="3.3.2. 命令"></a>3.3.2. 命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：<package_name>为指定安装包的名称。包名两边不加尖括号“&lt;&gt;”。 </p>
+<blockquote>
+<p>如：<code>pip install see</code>即安装see包。</p>
+</blockquote>
+<h4 id="3-3-3-注意"><a href="#3-3-3-注意" class="headerlink" title="3.3.3. 注意"></a>3.3.3. 注意</h4><ol>
+<li>pip只是包管理器，无法对环境进行管理。因此如果想在指定环境中使用pip进行安装包，则需要先切换到指定环境中，再使用pip命令安装包。</li>
+<li>pip无法更新python，因为pip并不将python视为包。</li>
+<li>pip可以安装一些conda无法安装的包；conda也可以安装一些pip无法安装的包。因此当使用一种命令无法安装包时，可以尝试用另一种命令。</li>
+</ol>
+<h2 id="4-卸载包"><a href="#4-卸载包" class="headerlink" title="4. 卸载包"></a>4. 卸载包</h2><h3 id="4-1-卸载指定环境中的包"><a href="#4-1-卸载指定环境中的包" class="headerlink" title="4.1. 卸载指定环境中的包"></a>4.1. 卸载指定环境中的包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name &lt;env_name&gt; &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><code>&lt;env_name&gt;</code>即卸载包所在指定环境的名称。环境名两边不加尖括号“&lt;&gt;”。</li>
+<li><code>&lt;package_name&gt;</code>即要卸载包的名称。包名两边不加尖括号“&lt;&gt;”。</li>
+</ol>
+<blockquote>
+<p>例如：<code>conda remove --name python2 pandas</code>即卸载名为“python2”中的pandas包。 </p>
+</blockquote>
+<h3 id="4-2-卸载当前环境中的包"><a href="#4-2-卸载当前环境中的包" class="headerlink" title="4.2. 卸载当前环境中的包"></a>4.2. 卸载当前环境中的包</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">remove</span> &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><code>&lt;package_name&gt;</code>即要卸载包的名称。包名两边不加尖括号“&lt;&gt;”。</li>
+<li>执行命令后即在当前环境中卸载指定包。</li>
+</ol>
+<blockquote>
+<p>例如：<code>conda remove pandas</code>即在当前环境中卸载pandas包。</p>
+</blockquote>
+<h2 id="5-更新包"><a href="#5-更新包" class="headerlink" title="5. 更新包"></a>5. 更新包</h2><h3 id="5-1-更新所有包"><a href="#5-1-更新所有包" class="headerlink" title="5.1. 更新所有包"></a>5.1. 更新所有包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update --all</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda upgrade --all</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建议：在安装Anaconda之后执行上述命令更新Anaconda中的所有包至最新版本，便于使用。</p>
+</blockquote>
+<h3 id="5-2-更新指定包"><a href="#5-2-更新指定包" class="headerlink" title="5.2. 更新指定包"></a>5.2. 更新指定包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda upgrade &lt;package_name&gt;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><code>&lt;package_name&gt;</code>为指定更新的包名。包名两边不加尖括号“&lt;&gt;”。</li>
+<li>更新多个指定包，则包名以<strong>空格</strong>隔开，向后排列。如：<code>conda update pandas numpy matplotlib</code>即更新pandas、numpy、matplotlib包。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://huanyuan.mobi">赖兴兵</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://huanyuan.mobi/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8BAnaconda%E5%AE%89%E8%A3%85.html">http://huanyuan.mobi/202201/python/Pytorch安装之Anaconda安装.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://huanyuan.mobi" target="_blank">Jona's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Anaconda/">Anaconda</a><a class="post-meta__tags" href="/tags/conda/">conda</a><a class="post-meta__tags" href="/tags/Pytorch/">Pytorch</a></div><div class="post_share"><div class="social-share" data-image="/imgs/c5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/imgs/wechat.png" target="_blank"><img class="post-qr-code-img" src="/imgs/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/imgs/alipay.png" target="_blank"><img class="post-qr-code-img" src="/imgs/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8Bconda%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%87%86%E5%A4%87.html" title="Pytorch安装之conda国内镜像准备"><img class="cover" src="/imgs/c1.jpg" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Pytorch安装之conda国内镜像准备</div></div></a></div><div class="next-post pull-right"><a href="/202002/web_crawler/%E7%88%AC%E8%99%AB%E7%B3%BB%E5%88%97(5)%EF%BC%9AJavaFx%E7%95%8C%E9%9D%A2.html" title="爬虫系列(5)：JavaFx界面"><img class="cover" src="/imgs/202002/20211122145359.png" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">爬虫系列(5)：JavaFx界面</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/202201/python/VS%20Code%E6%8F%90%E7%A4%BA%20conda%20%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98.html" title="VS Code提示Anaconda问题处理"><img class="cover" src="/imgs/c2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">VS Code提示Anaconda问题处理</div></div></a></div><div><a href="/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8Bconda%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%87%86%E5%A4%87.html" title="Pytorch安装之conda国内镜像准备"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">Pytorch安装之conda国内镜像准备</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/imgs/avatar.jpg" onerror="this.onerror=null;this.src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">赖兴兵</div><div class="author-info__description">人生充满着期待，梦想连接着未来</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jonathanlai"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jonathanlai" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/JonnyLai85" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://facebook.com/jonathan.lai.1426" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a><a class="social-icon" href="https://instagram.com/jonathanlai8511/" target="_blank" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">放弃几年的Blog重新开始写了 ~:></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFAnaconda%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">一、什么是Anaconda？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">2. 特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Anaconda%E7%9A%84%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">二、Anaconda的安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85Anaconda"><span class="toc-number">2.1.</span> <span class="toc-text">1. Windows系统安装Anaconda</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Anaconda%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">三、Anaconda使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%AA%8C%E8%AF%81conda%E5%B7%B2%E8%A2%AB%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.</span> <span class="toc-text">1. 验证conda已被安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9B%B4%E6%96%B0conda%E8%87%B3%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC"><span class="toc-number">3.2.</span> <span class="toc-text">2. 更新conda至最新版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8D%B8%E8%BD%BDconda"><span class="toc-number">3.3.</span> <span class="toc-text">3. 卸载conda</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%AE%A1%E7%90%86%E7%8E%AF%E5%A2%83"><span class="toc-number">4.</span> <span class="toc-text">四、管理环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%96%B0%E7%8E%AF%E5%A2%83"><span class="toc-number">4.1.</span> <span class="toc-text">1. 创建新环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%87%E6%8D%A2%E7%8E%AF%E5%A2%83"><span class="toc-number">4.2.</span> <span class="toc-text">2. 切换环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%80%E5%87%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">4.3.</span> <span class="toc-text">3. 退出环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%98%BE%E7%A4%BA%E5%B7%B2%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">4.4.</span> <span class="toc-text">4. 显示已创建环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%88%A0%E9%99%A4%E7%8E%AF%E5%A2%83"><span class="toc-number">4.5.</span> <span class="toc-text">5. 删除环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%AE%A1%E7%90%86%E5%8C%85"><span class="toc-number">5.</span> <span class="toc-text">五、管理包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E6%89%BE%E5%8F%AF%E4%BE%9B%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85%E7%89%88%E6%9C%AC"><span class="toc-number">5.1.</span> <span class="toc-text">1. 查找可供安装的包版本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%B2%BE%E7%A1%AE%E6%9F%A5%E6%89%BE"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.1. 精确查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE"><span class="toc-number">5.1.2.</span> <span class="toc-text">1.2. 模糊查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85%E4%BF%A1%E6%81%AF"><span class="toc-number">5.2.</span> <span class="toc-text">2. 获取当前环境中已安装的包信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">5.3.</span> <span class="toc-text">3. 安装包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9C%A8%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">5.3.1.</span> <span class="toc-text">3.1. 在指定环境中安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9C%A8%E5%BD%93%E5%89%8D%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">5.3.2.</span> <span class="toc-text">3.2. 在当前环境中安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">5.3.3.</span> <span class="toc-text">3.3. 使用pip安装包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.3.3.1.</span> <span class="toc-text">3.3.1. 使用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-%E5%91%BD%E4%BB%A4"><span class="toc-number">5.3.3.2.</span> <span class="toc-text">3.3.2. 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-%E6%B3%A8%E6%84%8F"><span class="toc-number">5.3.3.3.</span> <span class="toc-text">3.3.3. 注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8D%B8%E8%BD%BD%E5%8C%85"><span class="toc-number">5.4.</span> <span class="toc-text">4. 卸载包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%8D%B8%E8%BD%BD%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E5%8C%85"><span class="toc-number">5.4.1.</span> <span class="toc-text">4.1. 卸载指定环境中的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8D%B8%E8%BD%BD%E5%BD%93%E5%89%8D%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E5%8C%85"><span class="toc-number">5.4.2.</span> <span class="toc-text">4.2. 卸载当前环境中的包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9B%B4%E6%96%B0%E5%8C%85"><span class="toc-number">5.5.</span> <span class="toc-text">5. 更新包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%9B%B4%E6%96%B0%E6%89%80%E6%9C%89%E5%8C%85"><span class="toc-number">5.5.1.</span> <span class="toc-text">5.1. 更新所有包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%9B%B4%E6%96%B0%E6%8C%87%E5%AE%9A%E5%8C%85"><span class="toc-number">5.5.2.</span> <span class="toc-text">5.2. 更新指定包</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/202303/android/Android%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3.html" title="Android存储相关"><img src="/imgs/c2.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android存储相关"/></a><div class="content"><a class="title" href="/202303/android/Android%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3.html" title="Android存储相关">Android存储相关</a><time datetime="2023-03-11T04:30:00.000Z" title="发表于 2023-03-11 12:30:00">2023-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/android/Android%20Makefile%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E.html" title="Android Makefile中常用函数说明"><img src="/imgs/c2.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android Makefile中常用函数说明"/></a><div class="content"><a class="title" href="/202303/android/Android%20Makefile%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E.html" title="Android Makefile中常用函数说明">Android Makefile中常用函数说明</a><time datetime="2023-03-10T10:30:00.000Z" title="发表于 2023-03-10 18:30:00">2023-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/suisuinian/%E7%A2%8E%E7%A2%8E%E5%BF%B5-20230310.html" title="碎碎念-20230310"><img src="/imgs/c5.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="碎碎念-20230310"/></a><div class="content"><a class="title" href="/202303/suisuinian/%E7%A2%8E%E7%A2%8E%E5%BF%B5-20230310.html" title="碎碎念-20230310">碎碎念-20230310</a><time datetime="2023-03-09T10:21:00.000Z" title="发表于 2023-03-09 18:21:00">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/Windows%E7%B3%BB%E7%BB%9F%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8CPowerShell%E8%84%9A%E6%9C%AC%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html" title="Windows系统禁止运行PowerShell脚本解决办法"><img src="/imgs/14.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Windows系统禁止运行PowerShell脚本解决办法"/></a><div class="content"><a class="title" href="/202303/Windows%E7%B3%BB%E7%BB%9F%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8CPowerShell%E8%84%9A%E6%9C%AC%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html" title="Windows系统禁止运行PowerShell脚本解决办法">Windows系统禁止运行PowerShell脚本解决办法</a><time datetime="2023-03-09T09:09:37.000Z" title="发表于 2023-03-09 17:09:37">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202205/android/Android%E6%BA%90%E7%A0%81%E4%B8%AD__BEGIN_DECLS%E5%92%8C__END_DECLS%E4%BD%9C%E7%94%A8.html" title="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用"><img src="/imgs/c1.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用"/></a><div class="content"><a class="title" href="/202205/android/Android%E6%BA%90%E7%A0%81%E4%B8%AD__BEGIN_DECLS%E5%92%8C__END_DECLS%E4%BD%9C%E7%94%A8.html" title="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用">Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用</a><time datetime="2022-05-26T02:55:00.000Z" title="发表于 2022-05-26 10:55:00">2022-05-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2023 By 赖兴兵</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Stay Hungry, Stay Foolish</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
