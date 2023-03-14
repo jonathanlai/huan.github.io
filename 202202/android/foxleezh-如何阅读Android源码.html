@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>如何阅读Android源码 | Jona's Blog</title><meta name="author" content="赖兴兵"><meta name="copyright" content="赖兴兵"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#FFFBFF"><meta name="description" content="当我们把源码下载下来之后，会感到茫然无措，因为AOSP的源码实在是太多了，这里我们需要明确一些问题：要阅读哪些源码；阅读源码的顺序和方式；用什么工具来阅读。下面我将从这三个问题一一展开。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何阅读Android源码">
+<meta property="og:url" content="http://huanyuan.mobi/202202/android/foxleezh-%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBAndroid%E6%BA%90%E7%A0%81.html">
+<meta property="og:site_name" content="Jona&#39;s Blog">
+<meta property="og:description" content="当我们把源码下载下来之后，会感到茫然无措，因为AOSP的源码实在是太多了，这里我们需要明确一些问题：要阅读哪些源码；阅读源码的顺序和方式；用什么工具来阅读。下面我将从这三个问题一一展开。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huanyuan.mobi/imgs/202202/c4d51f0ce1188c6f04d71a7a9c854905_MD5.png">
+<meta property="article:published_time" content="2022-02-12T10:43:00.000Z">
+<meta property="article:modified_time" content="2023-03-13T09:57:22.149Z">
+<meta property="article:author" content="赖兴兵">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://huanyuan.mobi/imgs/202202/c4d51f0ce1188c6f04d71a7a9c854905_MD5.png"><link rel="shortcut icon" href="/imgs/avatar.jpg"><link rel="canonical" href="http://huanyuan.mobi/202202/android/foxleezh-%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBAndroid%E6%BA%90%E7%A0%81.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-i31VjpiWuu"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5fba8e4140079c36623565d1c9885852";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0GBY2PNEKY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '[object Object]');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何阅读Android源码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-13 17:57:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1C1B1E')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FFFBFF')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/imgs/avatar.jpg" onerror="onerror=null;src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/imgs/202202/c4d51f0ce1188c6f04d71a7a9c854905_MD5.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Jona's Blog"><span class="site-name">Jona's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">如何阅读Android源码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-12T10:43:00.000Z" title="发表于 2022-02-12 18:43:00">2022-02-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-13T09:57:22.149Z" title="更新于 2023-03-13 17:57:22">2023-03-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/%E6%BA%90%E7%A0%81/">源码</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="如何阅读Android源码"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当我们把源码下载下来之后，会感到茫然无措，因为AOSP的源码实在是太多了，这里我们需要明确一些问题：</p>
+<ul>
+<li>要阅读哪些源码</li>
+<li>阅读源码的顺序和方式</li>
+<li>用什么工具来阅读</li>
+</ul>
+<p>下面我将从这三个问题一一展开</p>
+<h2 id="一、要阅读哪些源码"><a href="#一、要阅读哪些源码" class="headerlink" title="一、要阅读哪些源码"></a>一、要阅读哪些源码</h2><p>这个问题是比较个性化的，因为不同的人从事着不同的工作，有的人从事应用开发，可能对Java层东西感兴趣;有的人从事Framework开发，可能对Framework层感兴趣;有的从事硬件开发，可能对底层实现感兴趣。</p>
+<p>这个都因人而异，但是有一点，不能盲目地毫无目的地看源码，因为这样的话最终你会淹没在AOSP的大海里，看了一年半截啥都看了，却又感觉都没看透，别人问你源码的东西，都能说个一二，但是一往深了说，就不知所以了。</p>
+<p>所以对于AOSP源码，不在于多，而在于精，你不要试图把所有的源码都看懂，你只要对自己感兴趣的那部分深入研究就可以，因为即便是Google工程师也不可能把AOSP全部读完。</p>
+<p>对于我而言，我是从事应用层开发的，我主要会了解以下几个方面的源码：</p>
+<ul>
+<li>Android系统启动流程，应用启动流程，四大组件启动流程，这将列入系统启动篇</li>
+<li>系统常用服务ActivityManagerService,WindowManagerService等，这将列入系统服务篇</li>
+<li>通信机制，主要是Binder和Handler，这将列入通信篇</li>
+<li>进程和线程的创建，运行，销毁，这将列入进程篇</li>
+<li>View的绘制和显示流程，事件分发机制，这将列入图形绘制篇</li>
+<li>Android虚拟机ART运行机制，类加载机制，Java注解，Java反射，这将列入虚拟机篇</li>
+<li>Android对于Java集合的优化算法，这将列入Java基础篇</li>
+</ul>
+<h2 id="二、阅读源码的顺序和方式"><a href="#二、阅读源码的顺序和方式" class="headerlink" title="二、阅读源码的顺序和方式"></a>二、阅读源码的顺序和方式</h2><h4 id="2-1-阅读顺序"><a href="#2-1-阅读顺序" class="headerlink" title="2.1 阅读顺序"></a>2.1 阅读顺序</h4><p>读源码是一个日积月累的过程，不可能一蹴而就，当我们列出自己感兴趣的源码后，我们需要制定一个阅读计划，先读什么再读什么。这个也是因人而异，根据自己的兴趣来就是，你最想读什么，那就排前面。</p>
+<p>我一直在说兴趣，因为兴趣是最好的老师，只有你对一样东西感兴趣了，才会有动力去学，去研究，才会不觉得累，如果一开始就去啃一些你不感兴趣的东西，到头来也是乏味不专注的，理解的程度也是不深，而且很有可能失去信心，最后放弃阅读。</p>
+<p>当然，如果你对好几样东西都感兴趣，那就有一些原则了：</p>
+<ul>
+<li>事物都讲究先后，就像树木扎根大地一样，先有大地，才有树木，基础的东西先看</li>
+<li>相互有关联的东西一起看，不要一会儿看系统启动，突然又去看事件分发什么的</li>
+</ul>
+<h4 id="2-2-阅读方式"><a href="#2-2-阅读方式" class="headerlink" title="2.2 阅读方式"></a>2.2 阅读方式</h4><p>Android系统涵盖的范围很广，从上层的应用程序，到Framework，再到Libraries以至硬件，从Java层到C++，就像一座几十层的大厦一样，每层都有楼梯，也有电梯，我们需要做的就是在大厦里上下穿梭。</p>
+<p>当我们阅读某一个知识点源码的时候，不同的知识点有不同的阅读方式，有些适合从下往上读，比如系统启动流程，我是从事件开始的地方开始读，从init.cpp开始，然后到zygote进程，到Java虚拟机，最后到Luncher；</p>
+<p>有些适合从上往下读，比如Activity的启动，我是从startActivity方法开始读，然后到ActivityThread，然后到ActivityManagerService;</p>
+<p>有些适合两头从中间读，比如Binder,我是从Java层看到C++层，但是看到驱动那儿看不动了，然后就从接收Binder的地方往回看，最后在两端集中在驱动的地方前后对比，才将Binder看通。</p>
+<p>这里还是有个好的方式，就是从事件触发的地方开始看是比较合适的。</p>
+<h2 id="三、用什么工具来阅读"><a href="#三、用什么工具来阅读" class="headerlink" title="三、用什么工具来阅读"></a>三、用什么工具来阅读</h2><p>Android 源码阅读神器当然是Source Insight<br>[<img src="/imgs/202202/8a7b9e933065cda140adb2fcc358276d_MD5.gif"></p>
+<p>Source Insight的好处：</p>
+<ul>
+<li>支持方法跳转，类跳转，并且对C++支持很好</li>
+<li>支持文件搜索，java,c++，xml都支持，并且支持内容搜索</li>
+<li>支持一键导入，随时配置路径</li>
+<li>而且最重要的，导入文件数多的时候不卡</li>
+</ul>
+<p>下面我讲讲如何使用Source Insight</p>
+<h3 id="3-1-下载安装Source-Insight"><a href="#3-1-下载安装Source-Insight" class="headerlink" title="3.1 下载安装Source Insight"></a>3.1 下载安装Source Insight</h3><p>下载地址 <a target="_blank" rel="noopener" href="http://download.csdn.net/download/foxlee1991/9882553">http://download.csdn.net/download/foxlee1991/9882553</a> ，我还专门配置了一个跟Android Studio一样的Darcula主题，下载地址 <a target="_blank" rel="noopener" href="http://download.csdn.net/download/foxlee1991/9882535">http://download.csdn.net/download/foxlee1991/9882535</a></p>
+<h3 id="3-2-导入AOSP源码"><a href="#3-2-导入AOSP源码" class="headerlink" title="3.2 导入AOSP源码"></a>3.2 导入AOSP源码</h3><p>我目前还没有下载完整的AOSP源码，只是先下载了几个重要的源码。打开Source Insight,选择Project -&gt; New Project，取个名字比如叫AOSP，点击OK</p>
+<p>[<img src="/imgs/202202/6249612eb167ddc478333fe067e9d5f5_MD5.png"></p>
+<p>选择你要查看的源码目录，点击OK</p>
+<p>[<img src="/imgs/202202/af2947fd3d9be8b9fc0bb433b61e347f_MD5.png"></p>
+<p>选择需要将哪些目录下的源码导入，点击Add Tree</p>
+<p>[<img src="/imgs/202202/0f0d39d5645a9325732b99df0b3931e4_MD5.png"></p>
+<p>导入成功后会有很多文件列在下方，点击Close</p>
+<p>[<img src="/imgs/202202/deb8438299c80b5d3c611ab391377f08_MD5.png"></p>
+<h3 id="3-3查看源码"><a href="#3-3查看源码" class="headerlink" title="3.3查看源码"></a>3.3查看源码</h3><p>现在进入项目还是一片空白，需要把工具栏打开，然后就可以看源码了</p>
+<p>[<img src="/imgs/202202/c65041d36bba569d38e9aacc8e4344e8_MD5.gif"></p>
+<p>左边是方法和成员变量搜索，右边Project File是搜索类名，Project Symbol是内容搜索</p>
+<p>[<img src="/imgs/202202/c4d51f0ce1188c6f04d71a7a9c854905_MD5.png"></p>
+<p>还有一些快捷键，比如Ctrl+左键可以方法跳转，左上角有前进和后退，Ctrl+G 是跳转到指定行，Ctrl+F 搜索内容，有时我们会遇到方法无法跳转，这时我们需要点击Project，选择Synchronize Files,全局关联一下，如图</p>
+<p>[<img src="/imgs/202202/539a7250efdf413dcb338615e2c4281d_MD5.gif"></p>
+<p>这里要注意导入的文件不要太多，太多会导致Synchronize失败，我们可以选择性地导入一些目录</p>
+<p>我们在导入源码的时候，有时一些汇编的源码(以.s或.S结尾)无法导入，这时我们需要点击Options，选择File Type Options，在C&#x2F;C++里添加.s和.S的支持，然后Close，如图</p>
+<p>[<img src="/imgs/202202/f5e1e726df669b2bcb1197ae5252e9cf_MD5.png"></p>
+<p>然后我们重新追加一些目录，点击Project，选择Add and Remove Projec Files，选择对应目录Add Tree即可，同时我们也可以选择Remove Tree删除对应目录源码，操作如下</p>
+<p>[<img src="/imgs/202202/761bdcbbb535693bf60eb5577437fce9_MD5.gif"></p>
+<h2 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h2><p>在真正开始阅读Android源码之前，最好是去了解一些C&#x2F;C++的语法知识，因为源码核心的部分都是用C&#x2F;C++写的，如果你对一些基础语法不太了解，会看得云里雾里的，这里我给大家推荐两本书<a target="_blank" rel="noopener" href="http://download.csdn.net/download/foxlee1991/10033921">《C标准库 中文版》</a>和<a target="_blank" rel="noopener" href="http://download.csdn.net/download/foxlee1991/10034335">《C++标准库 中文第2版》</a>，另外一些学习网站也不错：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/zh-cn/library/cscc687y.aspx">微软官方</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.runoob.com/cplusplus/cpp-tutorial.html">菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/cpp/">W3Cschool</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/foxleezh">foxleezh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/foxleezh/AOSP/issues/2">https://github.com/foxleezh/AOSP/issues/2</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">©著作权归作者所有，如需转载，请联系作者获取转载授权，否则将追究法律责任</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a></div><div class="post_share"><div class="social-share" data-image="/imgs/202202/c4d51f0ce1188c6f04d71a7a9c854905_MD5.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/imgs/wechat.png" target="_blank"><img class="post-qr-code-img" src="/imgs/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/imgs/alipay.png" target="_blank"><img class="post-qr-code-img" src="/imgs/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/202202/android/foxleezh-Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E4%B9%8BLinux%E5%86%85%E6%A0%B8.html" title="Android系统启动流程之Linux内核"><img class="cover" src="/imgs/202202/6a46ae1ab70f1a5c15a863a5372e694a_MD5.png" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Android系统启动流程之Linux内核</div></div></a></div><div class="next-post pull-right"><a href="/202202/android/%E6%A8%A1%E6%8B%9F%E8%87%AA%E7%84%B6%E5%8A%A8%E7%94%BB%E7%9A%84%E7%B2%BE%E9%AB%93%E2%80%94%E2%80%94TimeInterpolator%E4%B8%8ETypeEvaluator.html" title="模拟自然动画的精髓——TimeInterpolator与TypeEvaluator"><img class="cover" src="/imgs/202202/48072a429583a334790bc776917795e0_MD5.gif" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">模拟自然动画的精髓——TimeInterpolator与TypeEvaluator</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/202303/android/Android%20Makefile%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E.html" title="Android Makefile中常用函数说明"><img class="cover" src="/imgs/c2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-10</div><div class="title">Android Makefile中常用函数说明</div></div></a></div><div><a href="/202303/android/Android%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3.html" title="Android存储相关"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-11</div><div class="title">Android存储相关</div></div></a></div><div><a href="/202204/android/Android%E7%B3%BB%E7%BB%9FLauncher%E4%B8%8A%E6%89%8B.html" title="Android系统Launcher上手"><img class="cover" src="/imgs/c3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">Android系统Launcher上手</div></div></a></div><div><a href="/202204/android/%E6%9F%A5%E7%9C%8BAndroid%E6%BA%90%E7%A0%81%E7%89%88%E6%9C%AC%E5%8F%B7.html" title="查看Android系统源码版本号"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-19</div><div class="title">查看Android系统源码版本号</div></div></a></div><div><a href="/202202/android/%E6%A8%A1%E6%8B%9F%E8%87%AA%E7%84%B6%E5%8A%A8%E7%94%BB%E7%9A%84%E7%B2%BE%E9%AB%93%E2%80%94%E2%80%94TimeInterpolator%E4%B8%8ETypeEvaluator.html" title="模拟自然动画的精髓——TimeInterpolator与TypeEvaluator"><img class="cover" src="/imgs/202202/48072a429583a334790bc776917795e0_MD5.gif" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-10</div><div class="title">模拟自然动画的精髓——TimeInterpolator与TypeEvaluator</div></div></a></div><div><a href="/202204/android/%E8%AE%A9%E4%BD%A0%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84Android%E7%9A%84Launcher%E6%88%90%E4%B8%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%90%AF%E5%8A%A8%E7%9A%84%EF%BC%8C%E4%B9%9F%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84Launcher.html" title="自己手写Android默认的Launcher"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-18</div><div class="title">自己手写Android默认的Launcher</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/imgs/avatar.jpg" onerror="this.onerror=null;this.src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">赖兴兵</div><div class="author-info__description">这个网站是我个人博客站点，分享一些自己平时工作生活中遇到或者学习的内容，内容包含Java后端技术体系，Android前端技术体系，软件工程师成长等等。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jonathanlai"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jonathanlai" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/JonnyLai85" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://facebook.com/jonathan.lai.1426" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a><a class="social-icon" href="https://instagram.com/jonathanlai8511/" target="_blank" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">放弃几年的Blog重新开始写了 ~:></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%A6%81%E9%98%85%E8%AF%BB%E5%93%AA%E4%BA%9B%E6%BA%90%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">一、要阅读哪些源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%92%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">二、阅读源码的顺序和方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E9%98%85%E8%AF%BB%E9%A1%BA%E5%BA%8F"><span class="toc-number">3.0.1.</span> <span class="toc-text">2.1 阅读顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%98%85%E8%AF%BB%E6%96%B9%E5%BC%8F"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.2 阅读方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%94%A8%E4%BB%80%E4%B9%88%E5%B7%A5%E5%85%B7%E6%9D%A5%E9%98%85%E8%AF%BB"><span class="toc-number">4.</span> <span class="toc-text">三、用什么工具来阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Source-Insight"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 下载安装Source Insight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%AF%BC%E5%85%A5AOSP%E6%BA%90%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 导入AOSP源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A0%81"><span class="toc-number">4.3.</span> <span class="toc-text">3.3查看源码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-number">5.</span> <span class="toc-text">四、其他</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/202303/android/Android%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3.html" title="Android存储相关"><img src="/imgs/c1.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android存储相关"/></a><div class="content"><a class="title" href="/202303/android/Android%E5%AD%98%E5%82%A8%E7%9B%B8%E5%85%B3.html" title="Android存储相关">Android存储相关</a><time datetime="2023-03-11T04:30:00.000Z" title="发表于 2023-03-11 12:30:00">2023-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/android/Android%20Makefile%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E.html" title="Android Makefile中常用函数说明"><img src="/imgs/c2.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android Makefile中常用函数说明"/></a><div class="content"><a class="title" href="/202303/android/Android%20Makefile%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E.html" title="Android Makefile中常用函数说明">Android Makefile中常用函数说明</a><time datetime="2023-03-10T10:30:00.000Z" title="发表于 2023-03-10 18:30:00">2023-03-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/suisuinian/%E7%A2%8E%E7%A2%8E%E5%BF%B5-20230310.html" title="碎碎念-20230310"><img src="/imgs/c2.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="碎碎念-20230310"/></a><div class="content"><a class="title" href="/202303/suisuinian/%E7%A2%8E%E7%A2%8E%E5%BF%B5-20230310.html" title="碎碎念-20230310">碎碎念-20230310</a><time datetime="2023-03-09T10:21:00.000Z" title="发表于 2023-03-09 18:21:00">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202303/Windows%E7%B3%BB%E7%BB%9F%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8CPowerShell%E8%84%9A%E6%9C%AC%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html" title="Windows系统禁止运行PowerShell脚本解决办法"><img src="/imgs/14.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Windows系统禁止运行PowerShell脚本解决办法"/></a><div class="content"><a class="title" href="/202303/Windows%E7%B3%BB%E7%BB%9F%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8CPowerShell%E8%84%9A%E6%9C%AC%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95.html" title="Windows系统禁止运行PowerShell脚本解决办法">Windows系统禁止运行PowerShell脚本解决办法</a><time datetime="2023-03-09T09:09:37.000Z" title="发表于 2023-03-09 17:09:37">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202205/android/Android%E6%BA%90%E7%A0%81%E4%B8%AD__BEGIN_DECLS%E5%92%8C__END_DECLS%E4%BD%9C%E7%94%A8.html" title="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用"><img src="/imgs/c2.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用"/></a><div class="content"><a class="title" href="/202205/android/Android%E6%BA%90%E7%A0%81%E4%B8%AD__BEGIN_DECLS%E5%92%8C__END_DECLS%E4%BD%9C%E7%94%A8.html" title="Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用">Android源码中`__BEGIN_DECLS`和`__END_DECLS`作用</a><time datetime="2022-05-26T02:55:00.000Z" title="发表于 2022-05-26 10:55:00">2022-05-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2023 By 赖兴兵</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Stay Hungry, Stay Foolish</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
