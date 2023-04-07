@@ -1,3 +1,5 @@
+http://huanyuan.mobi/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%832.html
+http://huanyuan.mobi/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%831.html
 http://huanyuan.mobi/202304/cpp/C++%E4%B8%AD%E7%9A%84reinterpret_cast.html
 http://huanyuan.mobi/202303/suisuinian/%E6%9C%80%E8%BF%91%E8%BF%B7%E4%B8%8A%E3%80%8A%E9%BB%91%E6%9A%97%E8%8D%A3%E8%80%80%E3%80%8B%E4%BA%86.html
 http://huanyuan.mobi/202303/android/MTK%20Sensor%E6%A1%86%E6%9E%B6%20%E5%8F%8A%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%92%E8%AF%A6%E8%A7%A3.html
@@ -72,6 +74,7 @@ http://huanyuan.mobi/tags/vscode/
 http://huanyuan.mobi/tags/%E7%94%9F%E6%B4%BB/
 http://huanyuan.mobi/tags/MySQL/
 http://huanyuan.mobi/tags/c/
+http://huanyuan.mobi/tags/OpenGL/
 http://huanyuan.mobi/categories/SpringBoot/
 http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/
 http://huanyuan.mobi/categories/Windows/
@@ -91,3 +94,4 @@ http://huanyuan.mobi/categories/%E7%94%9F%E6%B4%BB/
 http://huanyuan.mobi/categories/%E7%94%9F%E6%B4%BB/%E7%A2%8E%E7%A2%8E%E5%BF%B5/
 http://huanyuan.mobi/categories/c/
 http://huanyuan.mobi/categories/c/%E5%9F%BA%E7%A1%80/
+http://huanyuan.mobi/categories/Android/OpenGL/
