@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>1、图像分割概念、原理和算法实现 | Jona's Blog</title><meta name="author" content="赖兴兵"><meta name="copyright" content="赖兴兵"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#FFFBFF"><meta name="description" content="使用OpenCV对图像的分割是十分简单的操作，就几个方法，但是想用的好，那就必须了解下实现原理和算法。这里主要说明了一些常用算法阈值分割、灰度平均法和直方图双峰法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1、图像分割概念、原理和算法实现">
+<meta property="og:url" content="http://huanyuan.mobi/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">
+<meta property="og:site_name" content="Jona&#39;s Blog">
+<meta property="og:description" content="使用OpenCV对图像的分割是十分简单的操作，就几个方法，但是想用的好，那就必须了解下实现原理和算法。这里主要说明了一些常用算法阈值分割、灰度平均法和直方图双峰法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huanyuan.mobi/imgs/c4.jpg">
+<meta property="article:published_time" content="2023-04-11T07:18:00.000Z">
+<meta property="article:modified_time" content="2023-04-19T03:27:18.030Z">
+<meta property="article:author" content="赖兴兵">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="OpenCV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://huanyuan.mobi/imgs/c4.jpg"><link rel="shortcut icon" href="/imgs/avatar.jpg"><link rel="canonical" href="http://huanyuan.mobi/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-i31VjpiWuu"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5fba8e4140079c36623565d1c9885852";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-0GBY2PNEKY"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '[object Object]');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1、图像分割概念、原理和算法实现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-19 11:27:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1C1B1E')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FFFBFF')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/imgs/avatar.jpg" onerror="onerror=null;src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/imgs/c4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jona's Blog"><span class="site-name">Jona's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-compass"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-camera-retro"></i><span> 照片墙</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-user-friends"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">1、图像分割概念、原理和算法实现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-11T07:18:00.000Z" title="发表于 2023-04-11 15:18:00">2023-04-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-19T03:27:18.030Z" title="更新于 2023-04-19 11:27:18">2023-04-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OpenCV/">OpenCV</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1、图像分割概念、原理和算法实现"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><p>这篇文章开始前，我们需要安装个python包：<strong>matplotlib</strong>。</p>
+<p>Matplotlib 可能是 Python 2D-绘图领域使用最广泛的套件。它能让使用者很轻松地将数据图形化，并且提供多样化的输出格式。我们在后续的文章中都使用这个图形库来将图片展示出来。</p>
+<p>具体安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">没有 anaconda，直接命令行安装</span></span><br><span class="line">pip install matplotlib</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">有 anaconda</span></span><br><span class="line">conda install -n python3 matplotlib</span><br></pre></td></tr></table></figure>
+<p>几个重要的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面 subplot 和 imshow 结合使用，所以写法都如下，一行中用逗号隔开</span></span><br><span class="line"><span class="comment"># subplot方法传一个整数参数，必须是3位的，像下边 331，表示3行3列的第1个位置</span></span><br><span class="line"><span class="comment"># subplot传三个整数，如(3,3,1),也表示3行3列的第1个位置</span></span><br><span class="line"><span class="comment"># 下面一行表示：窗体内创建一个 3行3列的表格，将img放在第一格内</span></span><br><span class="line"><span class="comment"># 也就是3行3列，最多就9张图片放9个格子</span></span><br><span class="line">plt.subplot(<span class="number">331</span>),plt.imshow(img)</span><br><span class="line"><span class="comment"># 整个窗体的 标题</span></span><br><span class="line">plt.suptitle(<span class="string">&#x27;Some Title&#x27;</span>)</span><br><span class="line"><span class="comment"># 将上边的绘图配置展示在窗口内</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="图像分割"><a href="#图像分割" class="headerlink" title="图像分割"></a>图像分割</h1><p>图像分割是指将图像分成若干具有相似性质的区域的过程，主要有基于阈值、基于区域、基于边缘、基于聚类、基于图论和基于深度学习的图像分割方法等。</p>
+<p>分割的原则就是使划分后的子图在内部保持相似度最大，而子图之间的相似度保持最小。</p>
+<h1 id="阈值分割算法"><a href="#阈值分割算法" class="headerlink" title="阈值分割算法"></a>阈值分割算法</h1><p>阈值分割的核心就是如何选取阈值， 选取正确的阈值是分割成功的关键。<br>阈值分割分为两类：<strong>全局阈值分割</strong>和<strong>局部阈值分割</strong>。</p>
+<h2 id="全局阈值分割"><a href="#全局阈值分割" class="headerlink" title="全局阈值分割"></a>全局阈值分割</h2><p>全局阈值分割指的是将灰度值大于阈值的像素设为白色，小于或者等于阈值的像素设为黑色； 或者反过来， 将大于阈值的像素设为黑色， 小于或者等于阈值的像素设为白色， 两者的区别只是呈现形式不同。<br>opencv 默认提供了一些常用的方法：</p>
+<ul>
+<li>THRESH_BINARY &#x3D; 0</li>
+<li>THRESH_BINARY_INV &#x3D; 1</li>
+<li>THRESH_TRUNC      &#x3D; 2</li>
+<li>THRESH_TOZERO     &#x3D; 3</li>
+<li>THRESH_TOZERO_INV &#x3D; 4</li>
+<li>THRESH_MASK       &#x3D; 7</li>
+<li>THRESH_OTSU       &#x3D; 8</li>
+<li>THRESH_TRIANGLE   &#x3D; 16<br>使用方法：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数：</span></span><br><span class="line"><span class="comment"># src: 原图像</span></span><br><span class="line"><span class="comment"># thresh: 对像素值进行分类的阈值</span></span><br><span class="line"><span class="comment"># maxval: 当像素值高于(小于)阈值时，应该被赋予的新的像素值</span></span><br><span class="line"><span class="comment"># type: 第四个参数是阈值方法</span></span><br><span class="line"><span class="comment"># 返回值: 函数有两个返回值，一个为retVal, 一个阈值化处理之后的图像</span></span><br><span class="line">cv2.threshold(src, thresh, maxval, <span class="built_in">type</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>常用的5种使用如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;pic.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">331</span>);plt.imshow(img)</span><br><span class="line"></span><br><span class="line"><span class="comment">#5种阈值法图像分割</span></span><br><span class="line">ret, thresh1 = cv2.threshold(img, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line">plt.subplot(<span class="number">332</span>), plt.imshow(thresh1)</span><br><span class="line"></span><br><span class="line">ret, thresh2 = cv2.threshold(img, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_BINARY_INV)</span><br><span class="line">plt.subplot(<span class="number">333</span>), plt.imshow(thresh2) </span><br><span class="line"></span><br><span class="line">ret, thresh3 = cv2.threshold(img, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TRUNC)</span><br><span class="line">plt.subplot(<span class="number">334</span>), plt.imshow(thresh3)</span><br><span class="line"></span><br><span class="line">ret, thresh4 = cv2.threshold(img, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TOZERO)</span><br><span class="line">plt.subplot(<span class="number">335</span>), plt.imshow(thresh4)</span><br><span class="line"></span><br><span class="line">ret, thresh5 = cv2.threshold(img, <span class="number">127</span>, <span class="number">255</span>, cv2.THRESH_TOZERO_INV)</span><br><span class="line">plt.subplot(<span class="number">336</span>), plt.imshow(thresh5)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">337</span>), plt.hist(img.ravel(), <span class="number">256</span>)</span><br><span class="line"></span><br><span class="line">plt.suptitle(<span class="string">&#x27;threshold&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="/assets/1681200454293.png"></p>
+<blockquote>
+<p>这里我使用的是一张 灰度值 差别不是很大的图片，所以出来的效果没有那么好。<br>第一张是原图，最后一张是直方图，2<del>5一次是上边0</del>4五种常用方法。</p>
+</blockquote>
+<h2 id="局部阈值分割"><a href="#局部阈值分割" class="headerlink" title="局部阈值分割"></a>局部阈值分割</h2><p>局部阈值分割的核心是计算阈值矩阵，比较常用的有自适应阈值算法（又称移动平均值算法） ， 是一种简单但是高效的局部阈值算法，其核心思想就是把每一个像素的邻域的“平均值”作为该位置的阈值。</p>
+<p>在说明分割算法前，我们先了解一下<strong>直方图双峰法</strong>，很多<strong>阈值化分割</strong>都是基于这个算法实现的。</p>
+<h1 id="直方图双峰法"><a href="#直方图双峰法" class="headerlink" title="直方图双峰法"></a>直方图双峰法</h1><p>60年代中期提出的直方图双峰法(也称： 2-Mode Method) 是典型的全局单阈值分方法。<br><strong>基本思想</strong>: 假设图像中有明显的目标和背景，则其灰度直方图呈双峰分布，当灰度级直方图具有双峰特性时，选取两峰之间的最低谷对应的灰度级作为阈值。<br><img src="/assets/1681193198730.png"></p>
+<p>上图中可以看到直方图中有明显的双峰状，那么以图中Zt为阈值进行二值化分割，就可以将目标和背景分割开。</p>
+<p>当然，这个方法的缺点也很明显，就是当图像的直方图出现波峰间的波谷平坦、各区域直方图的波形重叠等情况时，用双峰法就很难找到合适的阈值。</p>
+<p>对于这个可以做些优化。一种常用的方式是先对直方图进行高斯平滑处理，逐渐增大高斯滤波器的标准差，直到能从平滑后的直方图中得到两个唯一的波峰和它们之间唯一的最小值。<br>下面是一个c++的实现方案：<br> <img src="/assets/20230411162047.png"></p>
+<h1 id="灰度平均值法"><a href="#灰度平均值法" class="headerlink" title="灰度平均值法"></a>灰度平均值法</h1><p>使用整幅图像的灰度平均值作为二值化的阈值，一般该方法可作为其他方法的初始猜想值。</p>
+<hr>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="用-RGB-值获取-HSV-值"><a href="#用-RGB-值获取-HSV-值" class="headerlink" title="用 RGB 值获取 HSV 值"></a>用 RGB 值获取 HSV 值</h2><p>非常简单，可以使用相同的函数 <code>cv2.cvtColor()</code>。您无需传递图像，只需传递所需的 BGR 值即可。例如，要查找 Green 的 HSV 值，请在 Python 终端中尝试以下命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">green = np.uint8([[[<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>]]])</span><br><span class="line">hsv_green = cv2.cvtColor(green, cv2.COLOR_BGR2HSV)</span><br><span class="line"><span class="built_in">print</span>(hsv_green)</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line">[[[ <span class="number">60</span> <span class="number">255</span> <span class="number">255</span>]]]</span><br></pre></td></tr></table></figure>
+<p>现在你分别取 <code>[H-10, 100,100]</code> 和 <code>[H+10, 255, 255]</code> 作为下限和上限。<br>除了这种方法，还可以使用任何图像编辑工具（如 GIMP）或任何在线转换器来查找这些值，但不要忘记调整 HSV 范围。</p>
+<h2 id="OpenCV中的HSV颜色体系"><a href="#OpenCV中的HSV颜色体系" class="headerlink" title="OpenCV中的HSV颜色体系"></a>OpenCV中的HSV颜色体系</h2><p>如果直接使用OpenCV中cvtColor函数，并设置参数为CV_BGR2HSV,那么所得的H、S、V值范围分别是<code>[0,180)，[0,255)，[0,255)</code>，而非<code>[0,360]，[0,1]，[0,1]</code>；这时我们可以查下面的表格来确定颜色的大致区间:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>黑</th>
+<th>灰</th>
+<th>白</th>
+<th>红</th>
+<th>橙</th>
+<th>黄</th>
+<th>绿</th>
+<th>青</th>
+<th>蓝</th>
+<th>紫</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hmin</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0 or 156</td>
+<td>11</td>
+<td>26</td>
+<td>35</td>
+<td>78</td>
+<td>100</td>
+<td>125</td>
+</tr>
+<tr>
+<td>hmax</td>
+<td>180</td>
+<td>180</td>
+<td>180</td>
+<td>10 or 180</td>
+<td>25</td>
+<td>34</td>
+<td>77</td>
+<td>99</td>
+<td>124</td>
+<td>155</td>
+</tr>
+<tr>
+<td>smin</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>43</td>
+<td>43</td>
+<td>43</td>
+<td>43</td>
+<td>43</td>
+<td>43</td>
+<td>43</td>
+</tr>
+<tr>
+<td>smax</td>
+<td>255</td>
+<td>43</td>
+<td>30</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td>0</td>
+<td>46</td>
+<td>221</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+<td>46</td>
+</tr>
+<tr>
+<td>vmax</td>
+<td>46</td>
+<td>220</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+<td>255</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://huanyuan.mobi">赖兴兵</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://huanyuan.mobi/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html">http://huanyuan.mobi/202304/opencv/1、图像分割概念、原理和算法实现.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://huanyuan.mobi" target="_blank">Jona's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/OpenCV/">OpenCV</a></div><div class="post_share"><div class="social-share" data-image="/imgs/c4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/imgs/wechat.png" target="_blank"><img class="post-qr-code-img" src="/imgs/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/imgs/alipay.png" target="_blank"><img class="post-qr-code-img" src="/imgs/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/202304/android/remote%20write%20failed%EF%BC%9ANo%20space%20left%20on%20device.html" title="remote write failed：No space left on device"><img class="cover" src="/imgs/c5.jpg" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">remote write failed：No space left on device</div></div></a></div><div class="next-post pull-right"><a href="/202304/opencv/0%E3%80%81vscode+python+opencv%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" title="0、vscode+python+opencv环境配置"><img class="cover" src="/imgs/c1.jpg" onerror="onerror=null;src='/imgs/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">0、vscode+python+opencv环境配置</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/202304/opencv/0%E3%80%81vscode+python+opencv%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" title="0、vscode+python+opencv环境配置"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-11</div><div class="title">0、vscode+python+opencv环境配置</div></div></a></div><div><a href="/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8BAnaconda%E5%AE%89%E8%A3%85.html" title="Pytorch安装之Anaconda安装"><img class="cover" src="/imgs/c1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-12</div><div class="title">Pytorch安装之Anaconda安装</div></div></a></div><div><a href="/202201/python/VS%20Code%E6%8F%90%E7%A4%BA%20conda%20%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%97%AE%E9%A2%98.html" title="VS Code提示Anaconda问题处理"><img class="cover" src="/imgs/c4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">VS Code提示Anaconda问题处理</div></div></a></div><div><a href="/202201/python/Pytorch%E5%AE%89%E8%A3%85%E4%B9%8Bconda%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%87%86%E5%A4%87.html" title="Pytorch安装之conda国内镜像准备"><img class="cover" src="/imgs/c2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">Pytorch安装之conda国内镜像准备</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/imgs/avatar.jpg" onerror="this.onerror=null;this.src='/imgs/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">赖兴兵</div><div class="author-info__description">这个网站是我个人博客站点，分享一些自己平时工作生活中遇到或者学习的内容，内容包含Java后端技术体系，Android前端技术体系，软件工程师成长等等。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jonathanlai"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jonathanlai" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://twitter.com/JonnyLai85" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a><a class="social-icon" href="https://facebook.com/jonathan.lai.1426" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a><a class="social-icon" href="https://instagram.com/jonathanlai8511/" target="_blank" title="Instagram"><i class="fa-brands fa-square-instagram"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">放弃几年的Blog重新开始写了 ~:></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">开篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2"><span class="toc-number">2.</span> <span class="toc-text">图像分割</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">阈值分割算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text">全局阈值分割</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2"><span class="toc-number">3.2.</span> <span class="toc-text">局部阈值分割</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8C%E5%B3%B0%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">直方图双峰法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E5%B9%B3%E5%9D%87%E5%80%BC%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">灰度平均值法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-RGB-%E5%80%BC%E8%8E%B7%E5%8F%96-HSV-%E5%80%BC"><span class="toc-number">6.1.</span> <span class="toc-text">用 RGB 值获取 HSV 值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenCV%E4%B8%AD%E7%9A%84HSV%E9%A2%9C%E8%89%B2%E4%BD%93%E7%B3%BB"><span class="toc-number">6.2.</span> <span class="toc-text">OpenCV中的HSV颜色体系</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/202304/android/remote%20write%20failed%EF%BC%9ANo%20space%20left%20on%20device.html" title="remote write failed：No space left on device"><img src="/imgs/c5.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="remote write failed：No space left on device"/></a><div class="content"><a class="title" href="/202304/android/remote%20write%20failed%EF%BC%9ANo%20space%20left%20on%20device.html" title="remote write failed：No space left on device">remote write failed：No space left on device</a><time datetime="2023-04-19T03:30:00.000Z" title="发表于 2023-04-19 11:30:00">2023-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html" title="1、图像分割概念、原理和算法实现"><img src="/imgs/c4.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="1、图像分割概念、原理和算法实现"/></a><div class="content"><a class="title" href="/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html" title="1、图像分割概念、原理和算法实现">1、图像分割概念、原理和算法实现</a><time datetime="2023-04-11T07:18:00.000Z" title="发表于 2023-04-11 15:18:00">2023-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202304/opencv/0%E3%80%81vscode+python+opencv%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" title="0、vscode+python+opencv环境配置"><img src="/imgs/c1.jpg" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="0、vscode+python+opencv环境配置"/></a><div class="content"><a class="title" href="/202304/opencv/0%E3%80%81vscode+python+opencv%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" title="0、vscode+python+opencv环境配置">0、vscode+python+opencv环境配置</a><time datetime="2023-04-11T03:30:00.000Z" title="发表于 2023-04-11 11:30:00">2023-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%832.html" title="Android OpenGL学习入门：曲棍球2"><img src="/imgs/202304/1680851999019.png" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android OpenGL学习入门：曲棍球2"/></a><div class="content"><a class="title" href="/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%832.html" title="Android OpenGL学习入门：曲棍球2">Android OpenGL学习入门：曲棍球2</a><time datetime="2023-04-07T11:37:00.000Z" title="发表于 2023-04-07 19:37:00">2023-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%831.html" title="Android OpenGL学习入门：曲棍球1"><img src="/imgs/202304/1680850039288.png" onerror="this.onerror=null;this.src='/imgs/404.jpg'" alt="Android OpenGL学习入门：曲棍球1"/></a><div class="content"><a class="title" href="/202304/android/Android%20OpenGL%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%EF%BC%9A%E6%9B%B2%E6%A3%8D%E7%90%831.html" title="Android OpenGL学习入门：曲棍球1">Android OpenGL学习入门：曲棍球1</a><time datetime="2023-04-07T09:05:00.000Z" title="发表于 2023-04-07 17:05:00">2023-04-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2023 By 赖兴兵</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Stay Hungry, Stay Foolish</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
