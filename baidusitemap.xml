@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9AHoughLines()%E5%92%8CHoughLinesP()%E5%87%BD%E6%95%B0.html</loc>
+    <lastmod>2023-04-22</lastmod>
+  </url>
+  <url>
+    <loc>http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9Athreshold()%E5%87%BD%E6%95%B0.html</loc>
+    <lastmod>2023-04-22</lastmod>
+  </url>
+  <url>
     <loc>http://huanyuan.mobi/202304/android/remote%20write%20failed%EF%BC%9ANo%20space%20left%20on%20device.html</loc>
     <lastmod>2023-04-20</lastmod>
   </url>
