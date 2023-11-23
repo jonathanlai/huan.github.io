@@ -1,3 +1,4 @@
+http://huanyuan.mobi/202311/python/NumPy/NumPy%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8%EF%BC%88markdown%EF%BC%89.html
 http://huanyuan.mobi/202304/opencv/OpenCV%E5%B8%B8%E7%94%A8API%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89.html
 http://huanyuan.mobi/202305/android/%E7%94%A8adb%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E3%80%81%E6%9B%BF%E6%8D%A2Android%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8.html
 http://huanyuan.mobi/202305/android/Android%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E7%9C%8B%E6%89%8B%E6%9C%BA%E6%9E%B6%E6%9E%84.html
@@ -7,7 +8,6 @@ http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9AfillConvexPoly()%20%E5%9
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9Acircle()%20%E5%87%BD%E6%95%B0.html
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9Athreshold()%E5%87%BD%E6%95%B0.html
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9AHoughLines()%E5%92%8CHoughLinesP()%E5%87%BD%E6%95%B0.html
-http://huanyuan.mobi/images/202304/1682154370244.png.html
 http://huanyuan.mobi/202304/android/remote%20write%20failed%EF%BC%9ANo%20space%20left%20on%20device.html
 http://huanyuan.mobi/202304/opencv/1%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%A6%82%E5%BF%B5%E3%80%81%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.html
 http://huanyuan.mobi/202304/opencv/0%E3%80%81vscode+python+opencv%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html
@@ -92,6 +92,7 @@ http://huanyuan.mobi/tags/OpenCV/
 http://huanyuan.mobi/tags/armeabi/
 http://huanyuan.mobi/tags/%E6%9E%B6%E6%9E%84/
 http://huanyuan.mobi/tags/%E5%B8%B8%E7%94%A8API/
+http://huanyuan.mobi/tags/NumPy/
 http://huanyuan.mobi/categories/SpringBoot/
 http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/
 http://huanyuan.mobi/categories/Windows/
@@ -113,3 +114,5 @@ http://huanyuan.mobi/categories/c/
 http://huanyuan.mobi/categories/c/%E5%9F%BA%E7%A1%80/
 http://huanyuan.mobi/categories/Android/OpenGL/
 http://huanyuan.mobi/categories/OpenCV/
+http://huanyuan.mobi/categories/AI/Python/
+http://huanyuan.mobi/categories/AI/Python/%E5%B8%B8%E7%94%A8API/

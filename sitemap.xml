@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huanyuan.mobi/202311/python/NumPy/NumPy%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8%EF%BC%88markdown%EF%BC%89.html</loc>
+    
+    <lastmod>2023-11-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://huanyuan.mobi/202304/opencv/OpenCV%E5%B8%B8%E7%94%A8API%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89.html</loc>
     
     <lastmod>2023-11-23</lastmod>
@@ -75,15 +84,6 @@
   
   <url>
     <loc>http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9AHoughLines()%E5%92%8CHoughLinesP()%E5%87%BD%E6%95%B0.html</loc>
-    
-    <lastmod>2023-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://huanyuan.mobi/images/202304/1682154370244.png.html</loc>
     
     <lastmod>2023-04-22</lastmod>
     
@@ -777,6 +777,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://huanyuan.mobi/tags/NumPy/</loc>
+    <lastmod>2023-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -921,6 +928,20 @@
   
   <url>
     <loc>http://huanyuan.mobi/categories/OpenCV/</loc>
+    <lastmod>2023-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyuan.mobi/categories/AI/Python/</loc>
+    <lastmod>2023-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyuan.mobi/categories/AI/Python/%E5%B8%B8%E7%94%A8API/</loc>
     <lastmod>2023-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
