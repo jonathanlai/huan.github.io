@@ -1,3 +1,8 @@
+http://huanyuan.mobi/202304/opencv/OpenCV%E5%B8%B8%E7%94%A8API%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89.html
+http://huanyuan.mobi/202305/android/%E7%94%A8adb%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E3%80%81%E6%9B%BF%E6%8D%A2Android%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8.html
+http://huanyuan.mobi/202305/android/Android%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E7%9C%8B%E6%89%8B%E6%9C%BA%E6%9E%B6%E6%9E%84.html
+http://huanyuan.mobi/202305/android/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html
+http://huanyuan.mobi/202304/android/Android%20%E6%B7%B7%E6%B7%86%E9%85%8D%E7%BD%AE.html
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9AfillConvexPoly()%20%E5%92%8C%20fillPoly()%20%E5%87%BD%E6%95%B0.html
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9Acircle()%20%E5%87%BD%E6%95%B0.html
 http://huanyuan.mobi/202304/opencv/OpenCV%20API%EF%BC%9Athreshold()%E5%87%BD%E6%95%B0.html
@@ -84,6 +89,9 @@ http://huanyuan.mobi/tags/MySQL/
 http://huanyuan.mobi/tags/c/
 http://huanyuan.mobi/tags/OpenGL/
 http://huanyuan.mobi/tags/OpenCV/
+http://huanyuan.mobi/tags/armeabi/
+http://huanyuan.mobi/tags/%E6%9E%B6%E6%9E%84/
+http://huanyuan.mobi/tags/%E5%B8%B8%E7%94%A8API/
 http://huanyuan.mobi/categories/SpringBoot/
 http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/
 http://huanyuan.mobi/categories/Windows/
