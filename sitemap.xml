@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huanyuan.mobi/202312/android/Android%E8%B5%84%E6%BA%90public.xml%E7%9A%84%E4%BD%BF%E7%94%A8.html</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyuan.mobi/202312/android/%E5%AE%89%E5%8D%93%E8%B0%83%E6%95%B4power%E9%94%AE%E8%BF%9E%E5%87%BB%E4%BA%8B%E4%BB%B6.html</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyuan.mobi/202203/%E9%80%9A%E8%BF%87nvm%E5%AE%89%E8%A3%85Node.js.html</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://huanyuan.mobi/202312/kotlin/Kotlin%E5%90%84%E7%A7%8D%E4%B8%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB.html</loc>
     
     <lastmod>2023-12-04</lastmod>
@@ -344,15 +371,6 @@
   </url>
   
   <url>
-    <loc>http://huanyuan.mobi/202203/%E9%80%9A%E8%BF%87nvm%E5%AE%89%E8%A3%85Node.js.html</loc>
-    
-    <lastmod>2023-03-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://huanyuan.mobi/202204/android/Android%E7%B3%BB%E7%BB%9FLauncher%E4%B8%8A%E6%89%8B.html</loc>
     
     <lastmod>2023-03-10</lastmod>
@@ -535,7 +553,7 @@
 
   <url>
     <loc>http://huanyuan.mobi/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -543,252 +561,259 @@
   
   <url>
     <loc>http://huanyuan.mobi/tags/Java/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/SpringBoot/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/MongoDB/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Spring/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Windows/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/PowerShell/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Chocolatey/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Hugo/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/C%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/typedef/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/AI/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/GPT-4/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/OpenAI/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Github/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Android/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Node-js/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/nvm/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Android%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Springboot/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/JavaFx/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Python/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Anaconda/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/conda/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/Pytorch/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/vscode/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/MySQL/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/c/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/OpenGL/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/OpenCV/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/armeabi/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/%E5%B8%B8%E7%94%A8API/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/tags/NumPy/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyuan.mobi/tags/Android%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -797,168 +822,168 @@
   
   <url>
     <loc>http://huanyuan.mobi/categories/SpringBoot/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Windows/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Hugo/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/Java/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/C%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/AI/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Github/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Android/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Node-js/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Windows/%E5%8C%85%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/AI/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/Java/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/Python/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Android/%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/%E7%94%9F%E6%B4%BB/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/c/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/c/%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Android/OpenGL/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/OpenCV/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/AI/Python/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/AI/Python/%E5%B8%B8%E7%94%A8API/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://huanyuan.mobi/categories/Koltin/</loc>
-    <lastmod>2023-12-04</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
