@@ -1,3 +1,4 @@
+http://huanyuan.mobi/202312/architecture/Netflix%E5%85%AC%E5%8F%B8%E6%8A%80%E6%9C%AF%E5%A0%86%E6%A0%88.html
 http://huanyuan.mobi/202312/android/Android%E8%B5%84%E6%BA%90public.xml%E7%9A%84%E4%BD%BF%E7%94%A8.html
 http://huanyuan.mobi/202312/android/%E5%AE%89%E5%8D%93%E8%B0%83%E6%95%B4power%E9%94%AE%E8%BF%9E%E5%87%BB%E4%BA%8B%E4%BB%B6.html
 http://huanyuan.mobi/202203/%E9%80%9A%E8%BF%87nvm%E5%AE%89%E8%A3%85Node.js.html
@@ -97,6 +98,7 @@ http://huanyuan.mobi/tags/%E6%9E%B6%E6%9E%84/
 http://huanyuan.mobi/tags/%E5%B8%B8%E7%94%A8API/
 http://huanyuan.mobi/tags/NumPy/
 http://huanyuan.mobi/tags/Android%E5%BC%80%E5%8F%91/
+http://huanyuan.mobi/tags/Architecture/
 http://huanyuan.mobi/categories/SpringBoot/
 http://huanyuan.mobi/categories/%E7%BC%96%E7%A8%8B/
 http://huanyuan.mobi/categories/Windows/
@@ -121,3 +123,4 @@ http://huanyuan.mobi/categories/OpenCV/
 http://huanyuan.mobi/categories/AI/Python/
 http://huanyuan.mobi/categories/AI/Python/%E5%B8%B8%E7%94%A8API/
 http://huanyuan.mobi/categories/Koltin/
+http://huanyuan.mobi/categories/%E6%9E%B6%E6%9E%84/
